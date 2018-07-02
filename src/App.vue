@@ -2,10 +2,12 @@
   <div id="app">
     <div class="nav">
       <img src="./assets/logo.png" alt="">
-      <ul>
+      <ul class="clearFloat">
         <li v-for="a in dataList" @click="doThis(a)" :class="{active:a.id == active}">
-          {{a.name}}
-          <div>
+          <div class="in">
+            {{a.name}}
+          </div>
+          <div class="child">
             <div v-for="b in a.children">
               <span>{{b.name}}</span>
             </div>
@@ -35,7 +37,11 @@
           {
             "name":"bbb",
             "id":"2",
-            "children": []
+            "children": [
+              {"name":"d","id":"1"},
+              {"name":"e","id":"2"},
+              {"name":"f","id":"3"}
+            ]
           },
           {
             "name":"ccc",
@@ -70,7 +76,6 @@
 <style>
   .nav{
     width: 100%;
-    height: 50px;
     border-bottom: 1px solid #5CA9F7;
   }
   .nav img{
@@ -80,19 +85,17 @@
     margin-left: 30px;
   }
   .nav ul{
-    height: 50px;
     margin: 0 auto;
     width: 1000px;
   }
   .nav ul li{
     float: left;
-    height: 50px;
     line-height: 50px;
     cursor: pointer;
     width: 100px;
     text-align: center;
   }
-  .nav .active{
+  .nav .active .in{
     background-color: #5CA9F7;
     color: white;
   }
