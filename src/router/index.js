@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import $ from 'jquery'
 
 Vue.use(Router)
 
@@ -7,9 +8,9 @@ export default new Router({
   routes: [
     {
       path:'*',
-      redirect: '/index/1'
+      redirect: '/1'
     },
-    {
+    /*{
       path: '/index',
       name: 'HelloWorld',
       component: resolve => require(['@/components/HelloWorld'],resolve),
@@ -30,8 +31,8 @@ export default new Router({
           component: resolve => require(['@/components/thirdType'],resolve)
         }
       ]
-    },
-    /*{
+    },*/
+    {
       path: '/1',
       name: 'firstType',
       component: resolve => require(['@/components/firstType'],resolve)
@@ -45,6 +46,6 @@ export default new Router({
       path: '/3',
       name: 'thirdType',
       component: resolve => require(['@/components/thirdType'],resolve)
-    }*/
+    }
   ]
 })

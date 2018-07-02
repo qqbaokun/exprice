@@ -4,14 +4,7 @@
       <img src="./assets/logo.png" alt="">
       <ul class="clearFloat">
         <li v-for="a in dataList" @click="doThis(a)" :class="{active:a.id == active}">
-          <div class="in">
-            {{a.name}}
-          </div>
-          <div class="child">
-            <div v-for="b in a.children">
-              <span>{{b.name}}</span>
-            </div>
-          </div>
+          {{a.name}}
         </li>
       </ul>
     </div>
@@ -27,26 +20,15 @@
         dataList: [
           {
             "name":"增删查改",
-            "id":"1",
-            "children": [
-              {"name":"a","id":"1"},
-              {"name":"b","id":"2"},
-              {"name":"c","id":"3"}
-            ]
+            "id":"1"
           },
           {
             "name":"bbb",
-            "id":"2",
-            "children": [
-              {"name":"d","id":"1"},
-              {"name":"e","id":"2"},
-              {"name":"f","id":"3"}
-            ]
+            "id":"2"
           },
           {
             "name":"ccc",
-            "id":"3",
-            "children": []
+            "id":"3"
           }
         ],
         active:""
@@ -55,7 +37,7 @@
     methods: {
       doThis(a){
           this.$router.push({
-            path:'/index/'+a.id,
+            path:'/'+a.id,
             query:{
               "id":a.id,
               "name": a.name
@@ -95,7 +77,7 @@
     width: 100px;
     text-align: center;
   }
-  .nav .active .in{
+  .nav .active{
     background-color: #5CA9F7;
     color: white;
   }

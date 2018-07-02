@@ -1,5 +1,6 @@
 <template>
   <div class="firstType">
+    <menu-list v-bind:menu-list="menu"></menu-list>
     <table>
       <thead>
         <tr>
@@ -14,7 +15,7 @@
           <td>{{a.id}}</td>
           <td>
             <button @click="del(index)">删除</button>
-            <button @click="modify(index)">修改</button>
+            <button @click="modify(index,obj)">修改</button>
           </td>
         </tr>
         <tr>
@@ -24,7 +25,9 @@
           <td>
             <input type="text" v-model="obj.id">
           </td>
-          <td><button @click="add(obj)">增加</button></td>
+          <td>
+            <button @click="add(obj)">增加</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -32,11 +35,18 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import MenuList from "./menuList";
   export default {
+    components: {MenuList},
     name: 'firstType',
     data (){
       return {
         "list": [
+          {"name":"a",id:1},
+          {"name":"b",id:2},
+          {"name":"c",id:3}
+        ],
+        "menu":[
           {"name":"a",id:1},
           {"name":"b",id:2},
           {"name":"c",id:3}
@@ -65,7 +75,15 @@
       del:function (index) {
         this.list.splice(index,1)
       },
-      modify:function (index) {
+      modify:function (index,obj) {
+        if(!obj.name){
+          alert('请填写name');
+          return false;
+        }
+        if(!obj.id){
+          alert('请填写id');
+          return false;
+        }
         this.list[index] = this.obj;
         this.obj = {};
       }
