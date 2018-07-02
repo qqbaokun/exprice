@@ -1,6 +1,7 @@
 <template>
   <div class="firstType">
     <menu-list v-bind:menu-list="menu"></menu-list>
+    <router-view/>
     <table>
       <thead>
         <tr>

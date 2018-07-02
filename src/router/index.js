@@ -8,34 +8,19 @@ export default new Router({
   routes: [
     {
       path:'*',
-      redirect: '/1'
+      redirect: '/1/1'
     },
-    /*{
-      path: '/index',
-      name: 'HelloWorld',
-      component: resolve => require(['@/components/HelloWorld'],resolve),
-      children:[
-        {
-          path: '/index/1',
-          name: 'firstType',
-          component: resolve => require(['@/components/firstType'],resolve)
-        },
-        {
-          path: '/index/2',
-          name: 'secondType',
-          component: resolve => require(['@/components/secondType'],resolve)
-        },
-        {
-          path: '/index/3',
-          name: 'thirdType',
-          component: resolve => require(['@/components/thirdType'],resolve)
-        }
-      ]
-    },*/
     {
       path: '/1',
       name: 'firstType',
-      component: resolve => require(['@/components/firstType'],resolve)
+      component: resolve => require(['@/components/firstType'],resolve),
+      children: [
+        {
+          path: '/1/1',
+          name:'firstTypeOne',
+          component: resolve => require(['@/components/HelloWorld'],resolve)
+        },
+      ]
     },
     {
       path: '/2',
