@@ -1,7 +1,6 @@
 <template>
   <div class="firstType">
     <menu-list v-bind:menu-list="menu"></menu-list>
-    <router-view/>
     <table>
       <thead>
         <tr>
@@ -16,19 +15,11 @@
           <td>{{a.id}}</td>
           <td>
             <button @click="del(index)">删除</button>
-            <button @click="modify(index,obj)">修改</button>
+            <button @click="modify(index,a)">修改</button>
           </td>
         </tr>
         <tr>
-          <td>
-            <input type="text" v-model="obj.name">
-          </td>
-          <td>
-            <input type="text" v-model="obj.id">
-          </td>
-          <td>
-            <button @click="add(obj)">增加</button>
-          </td>
+          <td colspan="3"><button @click="add()">增加</button></td>
         </tr>
       </tbody>
     </table>
@@ -36,6 +27,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import dialogDefault from "./dialog/dialogDefault";
   import MenuList from "./menuList";
   export default {
     components: {MenuList},
@@ -51,42 +43,36 @@
           {"name":"a",id:1},
           {"name":"b",id:2},
           {"name":"c",id:3}
-        ],
-        "obj":{
-
-        }
+        ]
       }
     },
     methods:{
-      add:function(obj){
-        if(!obj.name){
-          alert('请填写name');
-          return false;
-        }
-        if(!obj.id){
-          alert('请填写id');
-          return false;
-        }
-        this.list.push(obj);
-        this.obj = {};
-        this.$nextTick(function(){
-          console.log('v-for渲染已经完成');
-        })
+      add:function(){
+        var self = this;
+        this.$vDialog.modal(dialogDefault,{
+          params:{},
+          title:"修改",
+          dialogCloseButton: true,
+          dialogMaxButton: false,
+          callback: function (data) {
+            self.list.push(data);
+          }
+        });
       },
       del:function (index) {
         this.list.splice(index,1)
       },
-      modify:function (index,obj) {
-        if(!obj.name){
-          alert('请填写name');
-          return false;
-        }
-        if(!obj.id){
-          alert('请填写id');
-          return false;
-        }
-        this.list[index] = this.obj;
-        this.obj = {};
+      modify:function (index,a) {
+        var self = this;
+        this.$vDialog.modal(dialogDefault,{
+          params: a,
+          title:"修改",
+          dialogCloseButton: true,
+          dialogMaxButton: false,
+          callback: function (data) {
+            a = data;
+          }
+        });
       }
     }
   }
@@ -105,6 +91,7 @@
     border:1px solid #f0f0f0;
     height: 30px;
     vertical-align: middle;
+    text-align: center;
   }
   table tr td button{
     color: #5CA9F7;

@@ -31,7 +31,8 @@
             "id":"3"
           }
         ],
-        active:""
+        active:"",
+        params:{}
       }
     },
     methods: {
@@ -43,7 +44,8 @@
               "name": a.name
             }
           });
-      }
+      },
+
     },
     watch: {
       '$route'(to,from){
@@ -54,6 +56,7 @@
     }
   }
 </script>
+<style src="./assets/css/bootstrap.min.css"></style>
 <style src="./assets/css/common.css"></style>
 <style>
   .nav{

@@ -48,3 +48,18 @@ a:active {star:expression(this.onFocus=this.blur());}
     background-color: #b9babc;
     border-radius: 10px;
 }
+
+
+.modal-header{
+  background-color: white!important;
+  border-bottom: 1px solid #eee!important;
+}
+
+.form-control, .form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.form-control {
+  border-color: #cfdadd;
+  border-radius: 2px;
+}

@@ -1,26 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import vDialog from 'v-dialogs'
 import $ from 'jquery'
 
 Vue.use(Router)
+Vue.use(vDialog)
 
 export default new Router({
   routes: [
     {
       path:'*',
-      redirect: '/1/1'
+      redirect: '/1'
     },
     {
       path: '/1',
       name: 'firstType',
-      component: resolve => require(['@/components/firstType'],resolve),
-      children: [
-        {
-          path: '/1/1',
-          name:'firstTypeOne',
-          component: resolve => require(['@/components/HelloWorld'],resolve)
-        },
-      ]
+      component: resolve => require(['@/components/firstType'],resolve)
     },
     {
       path: '/2',
