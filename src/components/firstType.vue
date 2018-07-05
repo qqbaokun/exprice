@@ -1,6 +1,6 @@
 <template>
   <div class="firstType">
-    <menu-list v-bind:menu-list="menu"></menu-list>
+    <!--<menu-list v-bind:menu-list="menu"></menu-list>-->
     <table>
       <thead>
         <tr>
@@ -15,7 +15,7 @@
           <td>{{a.id}}</td>
           <td>
             <button @click="del(index)">删除</button>
-            <button @click="modify(index,a)">修改</button>
+            <button @click="modify(a,index)">修改</button>
           </td>
         </tr>
         <tr>
@@ -23,14 +23,14 @@
         </tr>
       </tbody>
     </table>
+    <button class="btn btn-success" @click="alertDialog();">alertDialog</button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import dialogDefault from "./dialog/dialogDefault";
-  import MenuList from "./menuList";
+  /*import MenuList from "./menuList";*/
   export default {
-    components: {MenuList},
     name: 'firstType',
     data (){
       return {
@@ -51,7 +51,9 @@
         var self = this;
         this.$vDialog.modal(dialogDefault,{
           params:{},
-          title:"修改",
+          title:"添加",
+          width: 400,
+          height: 300,
           dialogCloseButton: true,
           dialogMaxButton: false,
           callback: function (data) {
@@ -62,15 +64,17 @@
       del:function (index) {
         this.list.splice(index,1)
       },
-      modify:function (index,a) {
+      modify:function (a,index) {
         var self = this;
         this.$vDialog.modal(dialogDefault,{
           params: a,
           title:"修改",
+          width: 400,
+          height: 300,
           dialogCloseButton: true,
           dialogMaxButton: false,
           callback: function (data) {
-            a = data;
+            self.$set(self.list,index,data);
           }
         });
       }

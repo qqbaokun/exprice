@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import vDialog from 'v-dialogs'
+import vueForm from 'vue-form'
 import $ from 'jquery'
-
+Vue.use(vueForm)
 Vue.use(Router)
 Vue.use(vDialog)
+
+
 
 export default new Router({
   routes: [
