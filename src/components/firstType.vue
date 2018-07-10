@@ -23,13 +23,11 @@
         </tr>
       </tbody>
     </table>
-    <button class="btn btn-success" @click="alertDialog();">alertDialog</button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import dialogDefault from "./dialog/dialogDefault";
-  /*import MenuList from "./menuList";*/
   export default {
     name: 'firstType',
     data (){
