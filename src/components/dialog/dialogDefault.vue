@@ -7,7 +7,7 @@
           <div class="col-sm-10">
             <input name="name" class="form-control" type="text" placeholder="name" v-model="user.name" required>
             <field-messages name="name">
-              <div slot="required"><span class="form-info">Name is a required field</span></div>
+              <div slot="required"><span class="form-info">{{message.name}}</span></div>
             </field-messages>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <div class="col-sm-10">
             <input name="id" class="form-control" type="text" placeholder="id" v-model="user.id" required pattern="^1[345789]\d{9}$">
             <field-messages name="id">
-              <div slot="required"><span class="form-info">id is a required field</span></div>
+              <div slot="required"><span class="form-info">{{message.id}}</span></div>
               <div slot="pattern"><span class="form-info">格式错误</span></div>
             </field-messages>
           </div>
@@ -60,6 +60,10 @@
           myForm: {},
           user:{
             isOk:null
+          },
+          message:{
+            name: "名字必填",
+            id: "ID必填"
           }
         }
       },
@@ -73,7 +77,6 @@
           }else {
             this.myForm.$submitted = true;
           }
-          console.log(this.myForm.$invalid)
         }
       },
       created(){

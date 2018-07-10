@@ -63,3 +63,6 @@ a:active {star:expression(this.onFocus=this.blur());}
   border-color: #cfdadd;
   border-radius: 2px;
 }
+
+div.vDialog div.modal-header button.vDialogCloseButton:hover{background-color: transparent!important;}
+div.vDialog div.modal-header button.vDialogCloseButton:hover i{color: #666!important;}
