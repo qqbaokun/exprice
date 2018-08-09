@@ -1,6 +1,5 @@
 <template>
   <div class="firstType">
-    <!--<menu-list v-bind:menu-list="menu"></menu-list>-->
     <table>
       <thead>
         <tr>
@@ -81,15 +80,15 @@
 
 </script>
 
-<style>
+<style scoped>
   .firstType{
 
   }
-  .firstType table{
+  table{
     margin: 20px auto;
     width: 400px;
   }
-  table,table tr th, table tr td {
+  table,table tr th,table tr td {
     border:1px solid #f0f0f0;
     height: 30px;
     vertical-align: middle;

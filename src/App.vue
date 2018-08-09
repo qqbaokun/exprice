@@ -3,7 +3,7 @@
     <div class="nav">
       <img src="./assets/logo.png" alt="">
       <ul class="clearFloat">
-        <li v-for="a in dataList" @click="doThis(a)" :class="{active:a.id == active}">
+        <li v-for="a in dataList" @click="doThis(a)" :class="{active:'/'+a.id == $route.path}">
           {{a.name}}
         </li>
       </ul>
@@ -49,16 +49,17 @@
     },
     watch: {
       '$route'(to,from){
-        console.log(to);
-        const toDepth = to.query.id;
-        this.active = toDepth;
+        // console.log(to);
+        // const toDepth = to.path.split('')[1];
+        // this.active = toDepth;
+        // console.log(this.$route.path)
       }
     }
   }
 </script>
 <style src="./assets/css/bootstrap.min.css"></style>
 <style src="./assets/css/common.css"></style>
-<style>
+<style scoped>
   .nav{
     width: 100%;
     border-bottom: 1px solid #5CA9F7;
