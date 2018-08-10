@@ -9,6 +9,9 @@ import 'vue-easytable/libs/themes-base/index.css'
 // 导入 table 和 分页组件
 import {VTable,VPagination} from 'vue-easytable'
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
 // 注册到全局
 Vue.component(VTable.name, VTable)
 Vue.component(VPagination.name, VPagination)
@@ -16,6 +19,7 @@ Vue.component(VPagination.name, VPagination)
 Vue.use(vueForm)
 Vue.use(Router)
 Vue.use(vDialog)
+Vue.use(ElementUI)
 
 
 
