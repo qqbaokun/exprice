@@ -1,74 +1,78 @@
 <template>
   <div class="secondType">
-    <v-table
-      is-horizontal-resize
-      style="width:100%"
-      :columns="columns"
-      :table-data="tableData"
-      row-hover-color="#eee"
-      row-click-color="#edf7ff"
-      :select-all="selectALL"
-      :select-change="selectChange"
-      :select-group-change="selectGroupChange"
-    ></v-table>
-    <div class="page">
-      <v-pagination :total="600" :page-size="10"></v-pagination>
+    <div style="margin-bottom: 20px;">
+      <el-button size="small" @click="addTab(editableTabsValue2)">
+        add tab
+      </el-button>
     </div>
+    <el-tabs v-model="editableTabsValue2" type="border-card" closable @tab-remove="removeTab">
+      <el-tab-pane v-for="(item, index) in editableTabs2" :key="item.name" :label="item.title" :name="item.name">
+        <component :is=item.content></component>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-export default {
-  name: 'secondType',
-  data () {
-    return {
-      msg: 'secondType',
-      tableData: [
-        {"name":"赵伟","tel":"156*****1987","hobby":"钢琴、书法、唱歌","address":"上海市黄浦区金陵东路569号17楼"},
-        {"name":"禁止取消","tel":"182*****1538","hobby":"钢琴、书法、唱歌","address":"上海市奉贤区南桥镇立新路12号2楼",_checked:true,_disabled:true},
-        {"name":"禁止选中","tel":"161*****0097","hobby":"钢琴、书法、唱歌","address":"上海市崇明县城桥镇八一路739号",_disabled:true},
-        {"name":"周伟","tel":"197*****1123","hobby":"钢琴、书法、唱歌","address":"上海市青浦区青浦镇章浜路24号",_checked:true},
-        {"name":"吴伟","tel":"183*****6678","hobby":"钢琴、书法、唱歌","address":"上海市松江区乐都西路867-871号"}
-      ],
-      columns: [
-        {width: 60, titleAlign: 'center',columnAlign:'center',type: 'selection',isFrozen:true},
-        {field: 'name', title: '姓名', width: 80, titleAlign: 'center', columnAlign: 'center',isResize:true},
-        {field: 'tel', title: '手机号码', width: 150, titleAlign: 'center', columnAlign: 'center',isResize:true},
-        {field: 'hobby', title: '爱好', width: 150, titleAlign: 'center', columnAlign: 'center',isResize:true},
-        {field: 'address', title: '地址', width: 280, titleAlign: 'center', columnAlign: 'left',isResize:true}
-      ]
-    }
-  },
-  methods:{
-      doSome(){
-
-      },
-      selectALL(selection){
-
-        console.log('select-aLL',selection);
-      },
-
-      selectChange(selection,rowData){
-        console.log('select-change',selection,rowData);
-      },
-
-      selectGroupChange(selection){
-        console.log('select-group-change',selection);
+  import thirdType from './thirdType'
+  export default {
+    name: 'secondType',
+    data () {
+      return {
+        editableTabsValue2: '0',
+        editableTabs2: [{
+          title: 'Tab 1',
+          name: '0',
+          content: thirdType
+        }],
+        tabIndex: 0
       }
-  },
-  created (){
-    this.doSome()
+    },
+    methods: {
+      addTab(targetName) {
+        console.log(targetName)
+        var componentName,url = './';
+        if(targetName==1){
+          url = url + 'firstType';
+        }else if(targetName==2){
+          url = url + 'thirdType';
+        }else{
+          url = url + 'HelloWorld';
+        }
+        componentName = resolve => require([url+'.vue'],resolve)
+
+        let newTabName = ++this.tabIndex + '';
+        this.editableTabs2.push({
+          title: url,
+          name: newTabName,
+          content: componentName
+        });
+        this.editableTabsValue2 = newTabName;
+      },
+      removeTab(targetName) {
+        let tabs = this.editableTabs2;
+        let activeName = this.editableTabsValue2;
+        if (activeName === targetName) {
+          tabs.forEach((tab, index) => {
+            if (tab.name === targetName) {
+              let nextTab = tabs[index + 1] || tabs[index - 1];
+              if (nextTab) {
+                activeName = nextTab.name;
+              }
+            }
+          });
+        }
+
+        this.editableTabsValue2 = activeName;
+        this.editableTabs2 = tabs.filter(tab => tab.name !== targetName);
+      }
+    }
   }
-}
 
 </script>
 
-<style scoped>
-  .secondType{
-
-  }
-  .page{
-    float: right;
-    margin-top: 10px;
+<style>
+  .el-tabs__nav .el-tabs__item:first-child span{
+    display: none;
   }
 </style>
