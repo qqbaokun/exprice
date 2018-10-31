@@ -30,10 +30,10 @@ export default new Router({
       name: 'secondType',
       component: resolve => require(['@/components/secondType'],resolve)
     },
-    {
+    /*{
       path: '/3',
       name: 'thirdType',
       component: resolve => require(['@/components/thirdType'],resolve)
-    }
+    }*/
   ]
 })
